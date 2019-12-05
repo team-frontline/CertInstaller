@@ -1,4 +1,6 @@
 /home/supimi/poc/microservices-application/CertInstaller/src/main/java/org/frontline/certInstaller/CertInstaller.java
+/home/supimi/poc/microservices-application/CertInstaller/src/main/java/org/frontline/certInstaller/mschainOperation/CertManager.java
+/home/supimi/poc/microservices-application/CertInstaller/src/main/java/org/frontline/certInstaller/config/Config.java
 /home/supimi/poc/microservices-application/CertInstaller/src/main/java/org/frontline/certInstaller/certOperation/CertHandler.java
 /home/supimi/poc/microservices-application/CertInstaller/src/main/java/org/frontline/certInstaller/mschainOperation/CaRequester.java
 /home/supimi/poc/microservices-application/CertInstaller/src/main/java/org/frontline/certInstaller/utils/KeyOperator.java
