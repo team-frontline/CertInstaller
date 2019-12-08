@@ -17,22 +17,22 @@ import java.util.concurrent.ExecutionException;
 
 public class CertInstaller {
     public static void main(String[] args){
-        Map<String, String> csrParamMap = new HashMap<String, String>();
-        csrParamMap.put("commonName", "chameera3.org");
-        csrParamMap.put("organizationUnit", "MSChain");
-        csrParamMap.put("organizationName", "Frontline.org");
-        csrParamMap.put("localityName", "Colombo");
-        csrParamMap.put("stateName", "West");
-        csrParamMap.put("country", "SL");
-        CertManager certManager = new CertManager();
-        try {
-            certManager.initiateCertificate("src/main/resources", "chameera3", csrParamMap);
-            certManager.updateRevokedCert("src/main/resources", "chameera3","chameera3-new", csrParamMap);
-//            KeyStoreManager.installCert("src/main/resources", certManager.getKeyPair(), "isuru.edu"
-//                    , "pass123", certManager.getCertificate(),"postman-test.jks");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        Map<String, String> csrParamMap = new HashMap<String, String>();
+//        csrParamMap.put("commonName", "ms-catalogue.lk");
+//        csrParamMap.put("organizationUnit", "MSChain");
+//        csrParamMap.put("organizationName", "Frontline.org");
+//        csrParamMap.put("localityName", "Colombo");
+//        csrParamMap.put("stateName", "West");
+//        csrParamMap.put("country", "SL");
+//        CertManager certManager = new CertManager();
+//        try {
+//            certManager.initiateCertificate("src/main/resources", "ms-catalogue", csrParamMap);
+////            certManager.updateRevokedCert("src/main/resources", "chameera3","chameera3-new", csrParamMap);
+//            KeyStoreManager.installCert("src/main/resources", certManager.getKeyPair(), "ms-catalogue.lk"
+//                    , "pass123", certManager.getCertificate(),"ms-catalogue.jks");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 

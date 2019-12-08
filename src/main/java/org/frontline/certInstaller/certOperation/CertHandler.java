@@ -80,7 +80,6 @@ public class CertHandler {
         signature.initSign(privateKey);
         signature.update(certificate.getBytes());
         byte[] sig = signature.sign();
-        System.out.println(new String(sig));
         return sig;
     }
 }

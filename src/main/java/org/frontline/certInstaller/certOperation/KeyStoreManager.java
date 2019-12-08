@@ -43,6 +43,7 @@ public class KeyStoreManager {
         keyStore.setKeyEntry(aliasName, keyPair.getPrivate(), password.toCharArray(), certificatesWithNew);
         new File(keystorePath).delete();
         keyStore.store(new FileOutputStream(keystorePath), password.toCharArray());
+        logger.info("New Certificate successfully installed.");
 
     }
 
