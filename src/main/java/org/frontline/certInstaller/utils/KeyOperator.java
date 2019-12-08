@@ -12,6 +12,7 @@ import org.bouncycastle.util.io.pem.PemWriter;
 
 import java.io.*;
 import java.security.*;
+import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
@@ -87,6 +88,15 @@ public class KeyOperator {
 
         return keyPair;
 
+    }
+
+    public static String stringFromCert(X509Certificate certificate) throws IOException, CertificateEncodingException {
+        StringWriter certStringWriter = new StringWriter();
+        PemWriter pemWriter = new PemWriter(certStringWriter);
+        pemWriter.writeObject(new PemObject("CERTIFICATE", certificate.getEncoded()));
+        pemWriter.close();
+        String certString = certStringWriter.toString();
+        return certString;
     }
 
 }

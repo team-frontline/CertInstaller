@@ -6,6 +6,7 @@ import sun.security.x509.X500Name;
 
 import java.io.*;
 import java.security.*;
+import java.security.cert.Certificate;
 import java.security.cert.CertificateException;;
 import java.security.cert.X509Certificate;
 
@@ -73,14 +74,14 @@ public class CertHandler {
         return new byte[0];
     }
 
-    public static byte[] signCert(PrivateKey privateKey, String certString) throws NoSuchAlgorithmException,
+    public static byte[] signCert(PrivateKey privateKey, String certificate) throws NoSuchAlgorithmException,
             InvalidKeyException, IOException, SignatureException, CertificateException {
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initSign(privateKey);
-        X509Certificate certificate = KeyOperator.readCertificate(certString);
-        byte[] certificateBytes = certificate.getEncoded();
-        signature.update(certificateBytes);
-        return signature.sign();
+        signature.update(certificate.getBytes());
+        byte[] sig = signature.sign();
+        System.out.println(new String(sig));
+        return sig;
     }
 }
 

@@ -43,27 +43,50 @@ public class CaRequester {
 //
 //    }
 
-    public String getNewCertificateAsync(byte[] csr) throws IOException, ExecutionException, InterruptedException {
+    public String getNewCertificateAsync(byte[] csr, String url) throws IOException, ExecutionException, InterruptedException {
 
-        DefaultAsyncHttpClientConfig.Builder clientBuilder = Dsl.config().setConnectTimeout(1000);
+        DefaultAsyncHttpClientConfig.Builder clientBuilder = Dsl.config().setConnectTimeout(10000);
         AsyncHttpClient client = Dsl.asyncHttpClient(clientBuilder);
 
-        BoundRequestBuilder postRequest = client.preparePost(Config.NEW_CERT_URL);
+        BoundRequestBuilder postRequest = client.preparePost(url);
         postRequest.setHeader("Accept", "application/json");
         postRequest.setHeader("Content-type", "application/json");
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode jsonRequest = objectMapper.createObjectNode();
         jsonRequest.put("csr", new String(csr));
 
-        postRequest.setBody( String.valueOf(jsonRequest));
+        postRequest.setBody(String.valueOf(jsonRequest));
 
         Future<Response> responseFuture = postRequest.execute();
-        logger.info("Requested new Certificate from " + Config.NEW_CERT_URL);
+        logger.info("Requested new Certificate from " + url);
         logger.info("Request Body: " + jsonRequest);
 
         Response response = responseFuture.get();
         String responseString = response.getResponseBody();
-        logger.info("Response Body: "+responseString);
+        logger.info("Response Body: " + responseString);
+        return responseString;
+    }
+
+    public String updateCertAsync(String certString, String signatureString) throws ExecutionException, InterruptedException {
+
+        DefaultAsyncHttpClientConfig.Builder clientBuilder = Dsl.config().setConnectTimeout(10000);
+        AsyncHttpClient client = Dsl.asyncHttpClient(clientBuilder);
+        BoundRequestBuilder postRequest = client.preparePost(Config.UPDATE_CERT_CERT_URL);
+        postRequest.setHeader("Accept", "application/json");
+        postRequest.setHeader("Content-type", "application/json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode jsonRequest = objectMapper.createObjectNode();
+        jsonRequest.put("certificate", certString);
+        jsonRequest.put("signature", signatureString);
+        postRequest.setBody(String.valueOf(jsonRequest));
+
+        Future<Response> responseFuture = postRequest.execute();
+        logger.info("Requested new Certificate from " + Config.UPDATE_CERT_CERT_URL);
+        logger.info("Request Body: " + jsonRequest);
+
+        Response response = responseFuture.get();
+        String responseString = response.getResponseBody();
+        logger.info("Response Body: " + responseString);
         return responseString;
     }
 }

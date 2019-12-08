@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 
 public class CAResponse {
     public class Result{
+        String status;
+
         public String getStatus() {
             return status;
         }
@@ -12,8 +14,6 @@ public class CAResponse {
         public void setStatus(String status) {
             this.status = status;
         }
-
-        String status;
     }
     private String operation;
     private Result result;
@@ -35,8 +35,8 @@ public class CAResponse {
     public static CAResponse getCAResponseObject(String jsonString){
         Gson gson = new Gson();
         CAResponse caResponse = gson.fromJson(jsonString, CAResponse.class);
-        System.out.println(caResponse.getCertificate());
-        System.out.println(caResponse.getResult().getStatus());
+//        System.out.println(caResponse.getCertificate());
+//        System.out.println(caResponse.getResult().getStatus());
         return caResponse;
     }
 }

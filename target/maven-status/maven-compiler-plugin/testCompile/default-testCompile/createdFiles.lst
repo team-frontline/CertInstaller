@@ -1,2 +1,3 @@
+org/frontline/certInstaller/CAResponseTest.class
 org/frontline/certInstaller/CertInstallerTest.class
-org/frontline/certInstaller/CaRequesterTest.class
+org/frontline/certInstaller/CertManagerTest.class
